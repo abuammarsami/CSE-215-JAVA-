@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+class InvalidMarksException extends Exception{
+	int marks;
+	InvalidMarksException(int a){
+		marks = a;
+	}
+	public String toString(){
+		return "InvalidMarksException: "+marks;
+	}
+}
+
+
+
+public class MyExcepEx {
+
+	static void compute(int marks) throws InvalidMarksException {
+		if(marks >= 100 || marks <= 0)
+			throw new InvalidMarksException(marks);
+		else 
+			System.out.println("Valid");
+	}
+	
+	
+	public static void main(String[] args) {
+	
+		int i,marks;
+		Scanner inp = new Scanner(System.in);
+		for(i=0;i<5;i++){
+		marks = inp.nextInt();	
+		
+		try{
+		compute(marks);
+		}catch(InvalidMarksException e){
+			System.out.println("Exception Caught: "+e);
+			
+		}
+		}
+		inp.close();
+	}
+}
